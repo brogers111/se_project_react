@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "Cabinet Grotesk";
+    src: url("../../assets/CabinetGrotesk-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Cabinet Grotesk";
+    src: url("../../assets/CabinetGrotesk-Medium.ttf") format("truetype");
+    font-weight: normal;
+}
+
+.page{
+    background-color: rgba(243, 243, 243, 1);
+    min-height: 100vh;
+}
+
+.page__content{
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: "Cabinet Grotesk";
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.2;
+}

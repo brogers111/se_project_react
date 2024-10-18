@@ -1,0 +1,25 @@
+.card{
+    position: relative;
+    width: 323px;
+    display: flex;
+    justify-content: center;
+}
+
+.card__name{
+    font-size: 16px;
+    line-height: 1.25;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+    position: absolute;
+    top: 15px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 2px 12px;
+    border-radius: 4px;
+}
+
+.card__image{
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 19px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
