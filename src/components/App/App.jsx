@@ -28,6 +28,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+
+    if (!activeModal) return;
+
     const handleEscape = (e) => {
       if (e.key === "Escape" && activeModal) {
         closeActiveModal();
@@ -41,7 +44,7 @@ function App() {
   }, [activeModal, closeActiveModal]);
 
   const handleOutsideClick = (e) => {
-    if (e.target.classList.contains("modal__opened")) {
+    if (e.target.classList.contains("modal_opened")) {
       closeActiveModal();
     }
   }
@@ -62,7 +65,7 @@ function App() {
         <Main weatherData={weatherData} handleCardClick={handleCardClick}/>
         <Footer />
       </div>
-      <ModalWithForm title="New garment" buttonText="Add garment" activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick}>
+      <ModalWithForm title="New garment" buttonText="Add garment" isOpen={activeModal === "add-garment"} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick}>
         <label htmlFor="name" className="modal__label">
             Name
             <input type="text" className="modal__input" id="name" placeholder="Name"/>
