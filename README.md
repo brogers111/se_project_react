@@ -1,8 +1,34 @@
-# React + Vite
+# WTWR Project (TripleTen Bootcamp - Sprint 10)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Snapshots
 
-Currently, two official plugins are available:
+![WTWR Desktop Display](https://github.com/user-attachments/assets/f2b109ca-11b5-4419-ab85-2d4b50485e3d)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
+
+The WTWR application provides users with a clothing selection based on the weather in their area, using the Open Weather API.
+
+## Tech Stack
+
+- Semantic HTML5
+- CSS
+- Flexbox
+- JavaScript
+- Promises
+- React
+- API Fetch Requests
+
+## Design
+
+View this project's Figma file by clicking the [link here.](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-%7C-WTWR?node-id=568-335&node-type=frame&t=54hmRh3MmxuOZm2G-0)
+
+## Deployment
+
+Feel free to view the completed project by clicking the [link here.](https://brogers111.github.io/se_project_react/)
+
+## Future Improvements
+
+- User profiles
+- Login/logout functionality
+- Uploading new clothing
+- Changing location
