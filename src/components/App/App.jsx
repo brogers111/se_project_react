@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import './App.css';
 import { coordinates, APIkey } from '../../utils/constants';
@@ -23,9 +23,9 @@ function App() {
     setActiveModal("add-garment");
   }
 
-  const closeActiveModal = () => {
+  const closeActiveModal = useCallback(() => {
     setActiveModal("");
-  }
+  }, []);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -38,7 +38,7 @@ function App() {
     return() => {
       document.removeEventListener("keydown", handleEscape);
     }
-  }, [closeActiveModal]);
+  }, [activeModal, closeActiveModal]);
 
   const handleOutsideClick = (e) => {
     if (e.target.classList.contains("modal__opened")) {
