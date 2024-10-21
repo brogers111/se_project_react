@@ -2,7 +2,7 @@
 
 ## Project Snapshots
 
-![WTWR Desktop Display](https://github.com/user-attachments/assets/f2b109ca-11b5-4419-ab85-2d4b50485e3d)
+![WTWR-desktop-view](https://github.com/user-attachments/assets/cd6b74ab-03b1-4474-8cdb-262acd52c98f)
 
 ## Description
 
