@@ -1,0 +1,133 @@
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Cabinet Grotesk";
+    font-size: 16px;
+    line-height: 1.25;
+    visibility: hidden;
+}
+
+.modal__opened{
+    visibility: visible;
+}
+
+.modal__content{
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 28px 28px 36px;
+    border-radius: 20px;
+    max-width: 496px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.modal__close{
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    background-image: url("../../assets/dark-x-icon.svg");
+    background-color: transparent;
+    height: 20px;
+    width: 20px;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+.modal__title{
+    margin: 0 0 24px;
+    font-size: 16px;
+}
+
+.modal__form{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.modal__input{
+    all: unset;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    width: 100%;
+    margin-top: 8px;
+}
+
+.modal__radio-buttons{
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__legend{
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.modal__radio-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+}
+
+.modal__radio-input:checked {
+    border-color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.modal__radio-input:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal__label_type_radio{
+    cursor: pointer;
+}
+
+/* I can't figure out how to get the radio labels to change color when clicked */
+.modal__label_type_radio:checked{
+    color: rgba(0, 0, 0, 1);
+}
+
+.modal__submit{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 1);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    width: 124px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.modal__submit:hover{
+    background-color: rgba(0, 0, 0, 0.6);
+}
