@@ -11,14 +11,17 @@ import ItemModal from '../ItemModal/ItemModal';
 import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import {CurrentTemperatureUnitContext} from '../../contexts/CurrentTemperatureUnitContext';
-import { defaultClothingItems } from "../../utils/constants";
+import { getItems } from '../../utils/api';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type: "", temp: { F: 999 }, city: "" });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
-  const [newClothingItems, setNewClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
+  
+  const username = "Brandon Rogers";
+  const avatar = true;
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -26,12 +29,12 @@ function App() {
   }
 
   const onAddItem = (values) => {
-    const newId = newClothingItems.length > 0 
-      ? Math.max(...newClothingItems.map(item => item._id)) + 1 
+    const newId = clothingItems.length > 0 
+      ? Math.max(...clothingItems.map(item => item._id)) + 1 
       : 0;
       
     const newItem = { _id: newId, ...values };
-    setNewClothingItems((prevItems) => [newItem, ...prevItems]);
+    setClothingItems((prevItems) => [newItem, ...prevItems]);
     closeActiveModal();
 };
 
@@ -78,14 +81,21 @@ function App() {
     .catch(console.error);
   }, [])
 
+  useEffect(() => {
+    getItems()
+    .then((data) => {
+      setClothingItems(data);
+    }). catch(console.error);
+  }, [])
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} avatar={avatar} username={username} />
           <Routes>
-            <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} newClothingItems={newClothingItems}/>}/>
-            <Route path='/profile' element={<Profile handleCardClick={handleCardClick} newClothingItems={newClothingItems}/>}/>
+            <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems}/>}/>
+            <Route path='/profile' element={<Profile handleCardClick={handleCardClick} clothingItems={clothingItems}  avatar={avatar} username={username}/>}/>
           </Routes>
           <Footer />
         </div>

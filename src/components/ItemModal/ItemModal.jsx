@@ -11,7 +11,7 @@ function ItemModal({ activeModal, closeActiveModal, card, handleOutsideClick }) 
                     <h2 className="modal__caption">{card.name}</h2>
                     <p className="modal__weather">Weather: {card.weather}</p>
                 </div>
-                <button className="modal__delete-item">Delete item</button>
+                <button onClick={closeActiveModal} className="modal__delete-item">Delete item</button>
             </div>
             </div>
         </div>

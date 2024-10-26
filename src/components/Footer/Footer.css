@@ -1,8 +1,7 @@
 .footer{
     display: flex;
     justify-content: space-between;
-    padding: 50px 0 0;
-    margin: auto 0 24px;
+    padding: 50px 0 24px;
 }
 
 /* How do I get the footer to stay 24 px from the bottom of the viewport? */
