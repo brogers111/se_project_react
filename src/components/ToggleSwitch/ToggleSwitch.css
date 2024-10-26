@@ -1,0 +1,55 @@
+.switch{
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.switch__box{
+    border-radius: 20px;
+    border: 2px solid rgba(126, 126, 126, 1);
+    width: 56px;
+    height: 28px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.switch:hover .switch__box{
+    border: 2px solid rgba(0, 0, 0, 1);
+}
+
+.switch__slider{
+    border-radius: 20px;
+    width: 28px;
+    height: 28px;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+}
+
+.switch__slider-C{
+    left: 28px;
+}
+
+.switch__temp-C{
+    font-size: 16px;
+    position: absolute;
+    top: -11px;
+    left: 37px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.switch__temp-F{
+    font-size: 16px;
+    position: absolute;
+    top: -11px;
+    left: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.switch__active{
+    color: rgba(255, 255, 255, 1);
+}
