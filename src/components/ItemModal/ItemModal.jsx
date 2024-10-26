@@ -7,8 +7,11 @@ function ItemModal({ activeModal, closeActiveModal, card, handleOutsideClick }) 
             <button onClick={closeActiveModal} type="button" className="modal__close modal__close_type_preview"></button>
             <img src={card.link} alt={card.name} className="modal__image" />
             <div className="modal__footer">
-                <h2 className="modal__caption">{card.name}</h2>
-                <p className="modal__weather">Weather: {card.weather}</p>
+                <div className="modal__details">
+                    <h2 className="modal__caption">{card.name}</h2>
+                    <p className="modal__weather">Weather: {card.weather}</p>
+                </div>
+                <button className="modal__delete-item">Delete item</button>
             </div>
             </div>
         </div>

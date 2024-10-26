@@ -1,0 +1,27 @@
+.clothes-section__header{
+    display: flex;
+}
+
+.clothes-section__header-title{
+    font-size: 20px;
+    line-height: 1.24;
+    margin: 35px 20px 16px 0;
+}
+
+.clothes-section__header-button{
+    all: unset;
+    font-size: 20px;
+    line-height: 1.24;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    margin: 35px 0 16px;
+}
+
+.clothes-section__items{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    gap: 20px;
+}

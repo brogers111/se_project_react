@@ -29,8 +29,22 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
 }
 
 .header__username{
     margin: 0;
+}
+
+.header__avatar_none{
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

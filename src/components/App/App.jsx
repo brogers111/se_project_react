@@ -1,25 +1,39 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import { coordinates, APIkey } from '../../utils/constants';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import AddItemModal from '../AddItemModal/AddItemModal';
 import ItemModal from '../ItemModal/ItemModal';
+import Profile from '../Profile/Profile';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import {CurrentTemperatureUnitContext} from '../../contexts/CurrentTemperatureUnitContext';
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type: "", temp: { F: 999 }, city: "" });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+  const [newClothingItems, setNewClothingItems] = useState(defaultClothingItems);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   }
+
+  const onAddItem = (values) => {
+    const newId = newClothingItems.length > 0 
+      ? Math.max(...newClothingItems.map(item => item._id)) + 1 
+      : 0;
+      
+    const newItem = { _id: newId, ...values };
+    setNewClothingItems((prevItems) => [newItem, ...prevItems]);
+    closeActiveModal();
+};
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -69,35 +83,16 @@ function App() {
       <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick}/>
+          <Routes>
+            <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} newClothingItems={newClothingItems}/>}/>
+            <Route path='/profile' element={<Profile handleCardClick={handleCardClick} newClothingItems={newClothingItems}/>}/>
+          </Routes>
           <Footer />
         </div>
-        <ModalWithForm title="New garment" buttonText="Add garment" isOpen={activeModal === "add-garment"} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick}>
-          <label htmlFor="name" className="modal__label">
-              Name
-              <input type="text" className="modal__input" id="name" placeholder="Name"/>
-          </label>
-          <label htmlFor="imageUrl" className="modal__label">
-              Image
-              <input type="url" className="modal__input" id="imageUrl" placeholder="Image URL"/>
-          </label>
-          <fieldset className="modal__radio-buttons">
-              <legend className="modal__legend">Select the weather type:</legend>
-              <label htmlFor="hot" className="modal__label modal__label_type_radio">
-                  <input type="radio" className="modal__radio-input" id="hot" name="weather"/>
-                  Hot
-              </label>
-              <label htmlFor="warm" className="modal__label modal__label_type_radio">
-                  <input type="radio" className="modal__radio-input" id="warm" name="weather" />
-                  Warm
-              </label>
-              <label htmlFor="cold" className="modal__label modal__label_type_radio">
-                  <input type="radio" className="modal__radio-input" id="cold" name="weather" />
-                  Cold
-              </label>
-          </fieldset>
-        </ModalWithForm>
-        <ItemModal activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick}/>
+        {activeModal === "add-garment" && <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onAddItem={onAddItem}/>}
+        {activeModal === "preview" && (
+          <ItemModal activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick}/>
+        )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
   )
