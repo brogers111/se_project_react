@@ -3,6 +3,7 @@
     width: 323px;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .card__name{
