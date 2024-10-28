@@ -12,11 +12,12 @@ The WTWR application provides users with a clothing selection based on the weath
 
 - Semantic HTML5
 - CSS
-- Flexbox
 - JavaScript
-- Promises
 - React
+- Flexbox
+- Promises
 - API Fetch Requests
+- Mock json-server
 
 ## Design
 
