@@ -17,9 +17,12 @@
 }
 
 .modal__image{
+    height: 498px;
+    width: 498px;
     border-radius: 16px 16px 0px 0px;
     display: block;
     margin: 0 auto;
+    object-fit: cover;
 }
 
 .modal__footer{

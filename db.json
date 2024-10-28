@@ -101,6 +101,24 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Cowboy hat",
+      "imageUrl": "https://www.jobeshats.com/cdn/shop/products/image_c7ca6013-55ca-4e54-8d43-5112033c5995_1024x1024.heic?v=1648593518",
+      "weather": "hot",
+      "_id": 17
+    },
+    {
+      "name": "Cowboy hat",
+      "imageUrl": "https://www.jobeshats.com/cdn/shop/products/image_c7ca6013-55ca-4e54-8d43-5112033c5995_1024x1024.heic?v=1648593518",
+      "weather": "cold",
+      "_id": 19
+    },
+    {
+      "name": "Hat",
+      "imageUrl": "https://www.hatsunlimited.com/cdn/shop/files/mens-wool-felt-fedoras_750x_crop_center.jpg?v=1704320900",
+      "weather": "cold",
+      "_id": 20
     }
   ]
 }

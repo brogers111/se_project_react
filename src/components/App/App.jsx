@@ -19,6 +19,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   const username = "Brandon Rogers";
   const avatar = true;
@@ -28,9 +29,7 @@ function App() {
     setSelectedCard(card);
   }
 
-  const handleAddClick = () => {
-    setActiveModal("add-garment");
-  }
+  const handleAddClick = () => setActiveModal("add-garment");
 
   const closeActiveModal = useCallback(() => {
     setActiveModal("");
@@ -47,21 +46,25 @@ function App() {
   }
 
   const onAddItem = (values) => {
+    setIsLoading(true);
     postItems(values.name, values.link, values.weather)
     .then((newItem) => {
       setClothingItems((prevItems) => [newItem, ...prevItems]);
       closeActiveModal();
     })
     .catch((error) => console.error("Error adding item:", error))
+    .finally(() => setIsLoading(false));
   };
 
   const handleDeleteItem = (id) => {
+    setIsLoading(true);
     deleteItem(id)
       .then(() => {
         setClothingItems((prevItems) => prevItems.filter((item) => item._id !== id));
         closeActiveModal();
       })
-      .catch((error) => console.error("Error deleting item:", error));
+      .catch((error) => console.error("Error deleting item:", error))
+      .finally(setIsLoading(false));
   };
 
   useEffect(() => {
@@ -102,14 +105,14 @@ function App() {
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} avatar={avatar} username={username} />
           <Routes>
-            <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems}/>}/>
+            <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} currentTemperatureUnit={currentTemperatureUnit}/>}/>
             <Route path='/profile' element={<Profile handleCardClick={handleCardClick} clothingItems={clothingItems}  avatar={avatar} username={username} handleAddClick={handleAddClick}/>}/>
           </Routes>
           <Footer />
         </div>
-        {activeModal === "add-garment" && <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onAddItem={onAddItem}/>}
+        {activeModal === "add-garment" && <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onAddItem={onAddItem} isLoading={isLoading}/>}
         {activeModal === "preview" && (
-          <ItemModal activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onDeleteItem={() => handleDeleteItem(selectedCard._id)}/>
+          <ItemModal activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onDeleteItem={() => handleDeleteItem(selectedCard._id)} isLoading={isLoading}/>
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

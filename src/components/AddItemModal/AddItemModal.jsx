@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../hooks/useFormAndValidation";
 import "./AddItemModal.css";
 
-function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAddItem }) {
+function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAddItem, isLoading }) {
     const {values, handleChange, errors, isValid, resetForm} = useFormAndValidation()
 
     const handleSubmit = (e) => {
@@ -22,7 +22,7 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
     return (
         <ModalWithForm
             title="New garment"
-            buttonText="Add garment"
+            buttonText={isLoading ? "Saving..." : "Add garment"}
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             handleOutsideClick={handleOutsideClick}

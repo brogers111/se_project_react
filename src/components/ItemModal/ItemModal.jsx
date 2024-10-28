@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, closeActiveModal, card, handleOutsideClick, onDeleteItem }) {
+function ItemModal({ activeModal, closeActiveModal, card, handleOutsideClick, onDeleteItem, isLoading }) {
     return(
         <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`} onClick={handleOutsideClick}>
             <div className="modal__content modal__content_type_image" onClick={(e) => e.stopPropagation()}>
@@ -11,7 +11,9 @@ function ItemModal({ activeModal, closeActiveModal, card, handleOutsideClick, on
                     <h2 className="modal__caption">{card.name}</h2>
                     <p className="modal__weather">Weather: {card.weather}</p>
                 </div>
-                <button onClick={onDeleteItem} className="modal__delete-item">Delete item</button>
+                <button onClick={onDeleteItem} className="modal__delete-item">
+                    {isLoading ? "Deleting..." : "Delete item"}
+                </button>
             </div>
             </div>
         </div>
