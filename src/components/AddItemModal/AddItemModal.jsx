@@ -1,58 +1,23 @@
-import "./AddItemModal.css";
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState, useEffect } from "react";
+import { useFormAndValidation } from "../hooks/useFormAndValidation";
+import "./AddItemModal.css";
 
 function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAddItem }) {
-    const [name, setName] = useState("");
-    const [link, setLink] = useState("");
-    const [weather, setWeather] = useState("");
-    const [isFormValid, setIsFormValid] = useState(false);
-    const [linkError, setLinkError] = useState("");
-    const [nameError, setNameError] = useState("");
-    const [isNameFocused, setIsNameFocused] = useState(false);
-    const [isLinkFocused, setIsLinkFocused] = useState(false);
-
-    const handleNameChange = (e) => {
-        setName(e.target.value);
-        setNameError("");
-    };
-
-    const handleLinkChange = (e) => {
-        setLink(e.target.value);
-        setLinkError("");
-    };
-
-    const handleWeatherTypeChange = (e) => setWeather(e.target.value);
-
-    useEffect(() => {
-        setIsFormValid(name.trim() !== "" && link.trim() !== "" && weather !== "");
-    }, [name, link, weather]);
+    const {values, handleChange, errors, isValid, resetForm} = useFormAndValidation()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (isFormValid) {
-            onAddItem({ name, weather, link });
+        if (isValid) {
+            onAddItem({ name: values.name, weather: values.weather, link: values.link });
         }
     };
 
     useEffect(() => {
-        if (name.length < 2 && isNameFocused) {
-            setNameError("Please enter a name");
-        }
-        if (!link || !/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(link) && isLinkFocused) {
-            setLinkError("Please enter a valid URL");
-        }
-    }, [name, link, isNameFocused, isLinkFocused]);
-
-    useEffect(() => {
         if (activeModal) {
-            setName("");
-            setLink("");
-            setWeather("");
-            setNameError("");
-            setLinkError("");
+            resetForm();
         }
-    }, [activeModal]);
+    }, [activeModal, resetForm]);
 
     return (
         <ModalWithForm
@@ -62,37 +27,35 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
             closeActiveModal={closeActiveModal}
             handleOutsideClick={handleOutsideClick}
             onSubmit={handleSubmit}
-            isFormValid={isFormValid}
+            isFormValid={isValid}
         >
             <label htmlFor="name" className="modal__label">
                 Name
                 <input
                     type="text"
+                    name="name"
                     className="modal__input"
                     id="name"
                     placeholder="Name"
-                    value={name}
-                    onChange={handleNameChange}
-                    onFocus={() => setIsNameFocused(true)}
-                    onBlur={() => setIsNameFocused(false)}
+                    value={values.name || ""}
+                    onChange={handleChange}
                     required
                 />
-                {nameError && isNameFocused && <span className="modal__error">{nameError}</span>}
+                {errors.name && <span className="modal__error">{errors.name}</span>}
             </label>
-            <label htmlFor="imageUrl" className="modal__label">
+            <label htmlFor="link" className="modal__label">
                 Image
                 <input
                     type="url"
+                    name="link"
                     className="modal__input"
-                    id="imageUrl"
+                    id="link"
                     placeholder="Image URL"
-                    value={link}
-                    onChange={handleLinkChange}
-                    onFocus={() => setIsLinkFocused(true)}
-                    onBlur={() => setIsLinkFocused(false)}
+                    value={values.link || ""}
+                    onChange={handleChange}
                     required
                 />
-                {linkError && isLinkFocused && <span className="modal__error">{linkError}</span>}
+                {errors.link && <span className="modal__error">{errors.link}</span>}
             </label>
             <fieldset className="modal__radio-buttons">
                 <legend className="modal__legend">Select the weather type:</legend>
@@ -103,7 +66,8 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
                         id="hot"
                         name="weather"
                         value="hot"
-                        onChange={handleWeatherTypeChange}
+                        checked={values.weather === "hot"}
+                        onChange={handleChange}
                     />
                     Hot
                 </label>
@@ -114,7 +78,8 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
                         id="warm"
                         name="weather"
                         value="warm"
-                        onChange={handleWeatherTypeChange}
+                        checked={values.weather === "warm"}
+                        onChange={handleChange}
                     />
                     Warm
                 </label>
@@ -125,7 +90,8 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
                         id="cold"
                         name="weather"
                         value="cold"
-                        onChange={handleWeatherTypeChange}
+                        checked={values.weather === "cold"}
+                        onChange={handleChange}
                     />
                     Cold
                 </label>
