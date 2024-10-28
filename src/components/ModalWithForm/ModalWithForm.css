@@ -61,6 +61,11 @@
     margin-top: 8px;
 }
 
+.modal__error{
+    color: rgba(255, 77, 0, 1);
+    font-size: 16px;
+}
+
 .modal__radio-buttons{
     border: none;
     padding: 0;
@@ -118,7 +123,7 @@
 }
 
 .modal__submit{
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
     padding: 8px 16px;
     border: none;
@@ -131,3 +136,13 @@
 .modal__submit:hover{
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+.modal__submit_type_disabled{
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.modal__submit_type_disabled:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+  }

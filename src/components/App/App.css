@@ -12,7 +12,7 @@
 
 .page{
     background-color: rgba(243, 243, 243, 1);
-    height: 100vh;
+    height: 100%;
 }
 
 .page__content{

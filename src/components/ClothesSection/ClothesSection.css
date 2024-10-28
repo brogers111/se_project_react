@@ -11,10 +11,12 @@
 .clothes-section__header-button{
     all: unset;
     font-size: 20px;
-    line-height: 1.24;
     color: rgba(0, 0, 0, 0.6);
-    cursor: pointer;
     margin: 35px 0 16px;
+}
+.clothes-section__header-button:hover{
+    color: rgba(0, 0, 0, 1);
+    cursor: pointer;
 }
 
 .clothes-section__items{
