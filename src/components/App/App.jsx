@@ -45,26 +45,32 @@ function App() {
     setCurrentTemperatureUnit(currentTemperatureUnit === "C" ? "F" : "C");
   }
 
-  const onAddItem = (values) => {
+  function handleSubmit(request){
     setIsLoading(true);
-    postItems(values.name, values.link, values.weather)
-    .then((newItem) => {
-      setClothingItems((prevItems) => [newItem, ...prevItems]);
-      closeActiveModal();
-    })
+    request()
+    .then(closeActiveModal)
     .catch((error) => console.error("Error adding item:", error))
     .finally(() => setIsLoading(false));
+  }
+
+  const onAddItem = (values) => {
+    const makeRequest = () => {
+      return postItems(values.name, values.link, values.weather)
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleDeleteItem = (id) => {
-    setIsLoading(true);
-    deleteItem(id)
+    const makeRequest = () => {
+      return deleteItem(id)
       .then(() => {
         setClothingItems((prevItems) => prevItems.filter((item) => item._id !== id));
-        closeActiveModal();
-      })
-      .catch((error) => console.error("Error deleting item:", error))
-      .finally(setIsLoading(false));
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   useEffect(() => {
