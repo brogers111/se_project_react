@@ -10,12 +10,15 @@
     font-weight: normal;
 }
 
-.page{
+.page__wrapper{
     background-color: rgba(243, 243, 243, 1);
-    height: 100%;
 }
 
-.page__content{
+.page{
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex; 
+    flex-direction: column;
     max-width: 1360px;
     margin: 0 auto;
     padding: 0 20px;
@@ -23,4 +26,5 @@
     font-weight: bold;
     font-size: 20px;
     line-height: 1.2;
+    justify-content: space-between;
 }

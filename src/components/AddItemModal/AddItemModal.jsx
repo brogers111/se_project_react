@@ -69,7 +69,7 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
                         checked={values.weather === "hot"}
                         onChange={handleChange}
                     />
-                    Hot
+                    <span className="modal__radio-text">Hot</span>
                 </label>
                 <label htmlFor="warm" className="modal__label modal__label_type_radio">
                     <input
@@ -81,7 +81,7 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
                         checked={values.weather === "warm"}
                         onChange={handleChange}
                     />
-                    Warm
+                    <span className="modal__radio-text">Warm</span>
                 </label>
                 <label htmlFor="cold" className="modal__label modal__label_type_radio">
                     <input
@@ -93,7 +93,7 @@ function AddItemModal({ activeModal, closeActiveModal, handleOutsideClick, onAdd
                         checked={values.weather === "cold"}
                         onChange={handleChange}
                     />
-                    Cold
+                    <span className="modal__radio-text">Cold</span>
                 </label>
             </fieldset>
         </ModalWithForm>

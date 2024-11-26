@@ -117,9 +117,9 @@
     cursor: pointer;
 }
 
-/* I can't figure out how to get the radio labels to change color when clicked */
-.modal__label_type_radio:checked{
+.modal__radio-input:checked ~ .modal__radio-text{
     color: rgba(0, 0, 0, 1);
+
 }
 
 .modal__submit{
@@ -128,7 +128,6 @@
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
-    width: 124px;
     margin-top: 8px;
     cursor: pointer;
 }
@@ -146,3 +145,14 @@
     background-color: rgba(0, 0, 0, 0.3);
     cursor: not-allowed;
   }
+
+.modal__submit-secondary{
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: 100px;
+    margin-top: 8px;
+    cursor: pointer;
+}

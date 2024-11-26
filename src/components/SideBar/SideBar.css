@@ -1,5 +1,8 @@
 .sidebar{
-    width: 310px;
+    width: 280px;
+}
+
+.sidebar__profile-info{
     display: flex;
     gap: 16px;
     align-items: center;
@@ -7,8 +10,11 @@
 }
 
 .sidebar__avatar{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
     height: 56px;
     width: 56px;
+    object-fit: cover;
 }
 
 .sidebar__avatar_none{
@@ -25,4 +31,24 @@
 
 .sidebar__username{
     margin: 0;
+}
+
+.sidebar__profile-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.sidebar__update-profile-button{
+    all: unset;
+    display: inline-block;
+    margin-top: 24px;
+    cursor: pointer;
+}
+
+.sidebar__logout-button{
+    all: unset;
+    display: inline-block;
+    cursor: pointer;
 }
