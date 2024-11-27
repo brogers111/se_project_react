@@ -1,6 +1,14 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm({ children, buttonText, title, activeModal, closeActiveModal, handleOutsideClick, onSubmit, isFormValid, secondaryButtonText }) {
+function ModalWithForm({ children, buttonText, title, activeModal, closeActiveModal, handleOutsideClick, onSubmit, isFormValid, secondaryButtonText, handleModalOpen }) {
+    const handleSecondaryButtonClick = () => {
+        if (activeModal === "signup") {
+            handleModalOpen("login");
+        } else if (activeModal === "login") {
+            handleModalOpen("signup");
+        }
+    };
+
     return(
         <div className={`modal ${["add-garment", "signup", "login", "edit-profile"].includes(activeModal) ? "modal_opened" : ""}`} onClick={handleOutsideClick}>
             <div className="modal__content" onClick={(e) => e.stopPropagation()}>
@@ -10,7 +18,7 @@ function ModalWithForm({ children, buttonText, title, activeModal, closeActiveMo
                     {children}
                     <div className="modal__submit-buttons">
                         <button type="submit" className={`modal__submit ${!isFormValid ? "modal__submit_type_disabled" : ""}`} disabled={!isFormValid}>{buttonText}</button>
-                        {["signup", "login"].includes(activeModal) && (<button type="button" className="modal__submit-secondary">{secondaryButtonText}</button>)}
+                        {["signup", "login"].includes(activeModal) && (<button type="button" className="modal__submit-secondary" onClick={handleSecondaryButtonClick}>{secondaryButtonText}</button>)}
                     </div>
                 </form>
             </div>

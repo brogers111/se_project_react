@@ -74,6 +74,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
+    setCurrentUser({name: "", avatar: ""});
     setIsLoggedIn(false);
   }
 
@@ -143,14 +144,16 @@ function App() {
     handleSubmit(makeRequest);
   };
 
-  const handleCardLike = ({ id, isLiked }) => {
+  const handleCardLike = ({ _id, isLiked }) => {
     const token = getToken();
     const apiCall = isLiked ? removeCardLike : addCardLike;
 
-    apiCall(id, token)
+    apiCall(_id, token)
     .then((updatedCard) => {
       setClothingItems((cards) => 
-        cards.map((item) => (item._id === id ? updatedCard : item))
+        cards.map((item) => {
+          return (item._id === _id ? updatedCard : item)
+    })
       );
     })
     .catch((err) => console.error("Like/Dislike Error:", err));
@@ -226,7 +229,7 @@ function App() {
                   path='/profile'
                   element={
                     <ProtectedRoute>
-                      <Profile handleCardClick={handleCardClick} clothingItems={clothingItems} handleAddClick={handleAddClick} handleModalOpen={handleModalOpen} handleLogout={handleLogout}/>
+                      <Profile handleCardClick={handleCardClick} clothingItems={clothingItems} handleAddClick={handleAddClick} handleModalOpen={handleModalOpen} handleLogout={handleLogout} onCardLike={handleCardLike}/>
                     </ProtectedRoute>
                   }
                 />
@@ -248,8 +251,8 @@ function App() {
         </div>
         {activeModal === "add-garment" && <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onAddItem={onAddItem} isLoading={isLoading}/>}
         {activeModal === "preview" && <ItemModal activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} onDeleteItem={() => handleDeleteItem(selectedCard._id)} isLoading={isLoading}/>}
-        {activeModal === "signup" && <RegisterModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} isLoading={isLoading} handleRegistration={handleRegistration}/>}
-        {activeModal === "login" && <LoginModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} isLoading={isLoading} handleLogin={handleLogin}/>}
+        {activeModal === "signup" && <RegisterModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} isLoading={isLoading} handleRegistration={handleRegistration} handleModalOpen={handleModalOpen}/>}
+        {activeModal === "login" && <LoginModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} isLoading={isLoading} handleLogin={handleLogin} handleModalOpen={handleModalOpen}/>}
         {activeModal === "edit-profile" && <EditProfileModal activeModal={activeModal} closeActiveModal={closeActiveModal} handleOutsideClick={handleOutsideClick} isLoading={isLoading} onUpdateProfile={onUpdateProfile}/>}
       </CurrentTemperatureUnitContext.Provider>
     </CurrentUserContext.Provider>

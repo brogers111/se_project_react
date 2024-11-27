@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import "./LoginModal.css";
 
-function LoginModal({ activeModal, closeActiveModal, handleOutsideClick, isLoading, handleLogin }) {
+function LoginModal({ activeModal, closeActiveModal, handleOutsideClick, isLoading, handleLogin, handleModalOpen }) {
     const {values, handleChange, errors, isValid, resetForm} = useFormAndValidation()
 
     const handleSubmit = (e) => {
@@ -26,6 +26,7 @@ function LoginModal({ activeModal, closeActiveModal, handleOutsideClick, isLoadi
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             handleOutsideClick={handleOutsideClick}
+            handleModalOpen={handleModalOpen}
             onSubmit={handleSubmit}
             isFormValid={isValid}
             secondaryButtonText="or Sign Up"

@@ -60,8 +60,10 @@
 .header__signup-button{
     all: unset;
     padding: 0 20px;
+    cursor: pointer;
 }
 
 .header__login-button{
     all: unset;
+    cursor: pointer;
 }

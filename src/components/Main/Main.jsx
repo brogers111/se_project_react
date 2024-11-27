@@ -7,7 +7,7 @@ import "./Main.css"
 function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
     const {currentTemperatureUnit} = useContext(CurrentTemperatureUnitContext);
     const temp = weatherData.temp[currentTemperatureUnit] || 999;
-
+    
     return(
         <main>
             <WeatherCard weatherData={weatherData} temp={temp} currentTemperatureUnit={currentTemperatureUnit}/>

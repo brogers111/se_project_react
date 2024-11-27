@@ -2,7 +2,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
-function Profile({ handleCardClick, clothingItems, handleAddClick, handleModalOpen, handleLogout }){
+function Profile({ handleCardClick, clothingItems, handleAddClick, handleModalOpen, handleLogout, onCardLike }){
 
     return (
         <div className="profile">
@@ -10,7 +10,7 @@ function Profile({ handleCardClick, clothingItems, handleAddClick, handleModalOp
                 <SideBar handleModalOpen={handleModalOpen} handleLogout={handleLogout}/>
             </section>
             <section className="profile__clothing-items">
-                <ClothesSection handleAddClick={handleAddClick} handleCardClick={handleCardClick} clothingItems={clothingItems} />
+                <ClothesSection handleAddClick={handleAddClick} handleCardClick={handleCardClick} clothingItems={clothingItems} onCardLike={onCardLike}/>
             </section>
         </div>
     )
