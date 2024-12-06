@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "./constants";
 
 export function checkResponse(res) {
   return res.ok
@@ -11,11 +11,11 @@ function request(url, options) {
 }
 
 function getItems() {
-  return request(`${baseUrl}/items`);
+  return request(`${BASE_URL}/items`);
 }
 
 function postItems(name, imageUrl, weather, token) {
-  return request(`${baseUrl}/items`, {
+  return request(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -27,7 +27,7 @@ function postItems(name, imageUrl, weather, token) {
 }
 
 function deleteItem(id, token) {
-  return request(`${baseUrl}/items/${id}`, {
+  return request(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
@@ -38,7 +38,7 @@ function deleteItem(id, token) {
 }
 
 function updateProfile(name, avatar, token) {
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -50,7 +50,7 @@ function updateProfile(name, avatar, token) {
 }
 
 function addCardLike(id, token) {
-  return request(`${baseUrl}/items/${id}/likes`, {
+  return request(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -61,7 +61,7 @@ function addCardLike(id, token) {
 }
 
 function removeCardLike(id, token) {
-  return request(`${baseUrl}/items/${id}/likes`, {
+  return request(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

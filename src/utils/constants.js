@@ -78,3 +78,8 @@ export const coordinates = {
   latitude: 44.16697625816435,
   longitude: -93.99719342712606,
 };
+
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.h0stname.net"
+    : "http://localhost:3001";
