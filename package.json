@@ -13,6 +13,7 @@
     "deploy": "npm run build && scp -r ./dist/* ber64111@34.171.105.180:/home/ber64111/frontend"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0"

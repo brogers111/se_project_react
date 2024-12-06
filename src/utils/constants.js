@@ -72,7 +72,7 @@ export const defaultWeatherOptions = {
   },
 };
 
-export const APIkey = "14c3d3b6fa3dd10231f9997fc2f734b7";
+export const APIkey = process.env.REACT_APP_API_KEY;
 
 export const coordinates = {
   latitude: 44.16697625816435,
